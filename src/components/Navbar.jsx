@@ -161,7 +161,39 @@ const Navbar= ({darkMode, toggleDarkMode}) => {
                         } backdrop-blur-lg rounded-xl shadow-lg border ${darkMode
                             ? 'border-gray-700' : 'border-gray-200'
                         }`}>
-
+                            <div className="px-4 py-3 space-y-2">
+                                {navItems.map((item) => (
+                                    <a
+                                    key={item.name}
+                                    href={item.link}
+                                    onClick={() => handleNavClick(item.name)}
+                                    className="block">
+                                        <motion.div
+                                        whileHover={{ x:5 }}
+                                        className={`py-3 px-4 rounded-lg text-center
+                                        ${activeSelection === item.name.toLowerCase()
+                                        ? darkMode ? 'bg-gray-800' : 'bg-blue-100' 
+                                        : ''
+                                        }`}>
+                                            <span
+                                            className={`font-medium ${activeSelection === item.name.toLowerCase()
+                                            ? colors.textActive
+                                            : colors.textSecondary
+                                            }`}>
+                                                {item.name}
+                                            </span>
+                                        </motion.div>
+                                    </a>
+                                ))}
+                                <motion.a
+                                href="#contact"
+                                onClick={() => setIsMenuOpen(false)}
+                                whileTap={{ scale: 0.95 }}
+                                className={`block py-3 px-4 text-center font-semibold rounded-lg bg-linear-to-r 
+                                ${colors.button} text-white shadow-md`}>
+                                    Hire Me
+                                </motion.a>
+                            </div>
                         </motion.div>
                     )}
             </motion.nav>
